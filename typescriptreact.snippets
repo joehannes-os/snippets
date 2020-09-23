@@ -1,0 +1,92 @@
+snippet testSetupTeardown "usual setup teardown boilerplate" b
+import React from "react";
+import { render, unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
+
+let container = null;
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  // cleanup on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
+$0
+endsnippet
+
+snippet testIt "minimal function boilerplate" b
+it("renders $0", () => {
+	act(() => {
+		render($1, container);
+	});
+	expect(container$2);
+});
+endsnippet
+
+snippet testAct "minimal function boilerplate" b
+	act(() => {
+		render($1, container);
+	});
+	expect(container$2);
+endsnippet
+
+snippet testExpectQuerySelectorText "minimal function boilerplate" b
+  expect(container.querySelector("summary").textContent).toBe();
+endsnippet
+
+snippet testExpectQuerySelectorAttribute "minimal function boilerplate" b
+  expect(container.querySelector("summary").getAttribute("$0")).toEqual("$1");
+endsnippet
+
+snippet testExpectTextToBe "minimal function boilerplate" b
+	expect(container.textContent).toBe();
+endsnippet
+
+snippet testExpectTextToContain "minimal function boilerplate" b
+	expect(container.textContent).toContain();
+endsnippet
+
+snippet testFetch "usual setup to test mock API fetch" b
+it("renders dynamic data driven stuff", async () => {
+  const fakeJSON = {};
+  jest.spyOn(global, "fetch").mockImplementation(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(fakeJSON)
+    })
+  );
+
+  // Use the asynchronous version of act to apply resolved promises
+  await act(async () => {
+    render(<Component />, container);
+  });
+
+  // remove the mock to ensure tests are completely isolated
+  global.fetch.mockRestore();
+});
+endsnippet
+
+snippet testHandleEvent "event checking boilerplate" b
+it("changes value when clicked", () => {
+  const onHandle = jest.fn();
+  act(() => {
+    render(<Component on$0={onHandle} />, container);
+  });
+
+  const component = document.querySelector("[$1]");
+  expect(component.innerHTML).toBe($2);
+
+  act(() => {
+    component.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  expect(onHandle).toHaveBeenCalledTimes(1);
+  expect(button.innerHTML).toBe($3);
+});
+endsnippet
+
