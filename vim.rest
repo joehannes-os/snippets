@@ -1,30 +1,33 @@
 # GETting from resource.
-http://example.com
-GET /path/to/resource?key=value
+# http://example.com
+https://run.mocky.io
+
+# GET /path/to/resource?key=value
+POST /v3/3d6b9110-857b-4ca9-8b4b-77dcc194447f
 
 # POSTing to an ElasticSearch service.
-http://example.com/elasticsearch
+# http://example.com/elasticsearch
 
 // Specify optional headers.
 Content-Type: application/json; charset=utf-8
 
-POST /index/type?pretty
-{
-    "key": "a key",
-    "value": "a value"
-}
+# POST /index/type?pretty
+# {
+#     "key": "a key",
+#     "value": "a value"
+# }
+#
+# # Submitting a form.
+# https://example.net:8080
 
-# Submitting a form.
-https://example.net:8080
-
-Accept: */*
-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
-Cache-Control: no-cache
-Connection: keep-alive
-Content-Type: application/x-www-form-urlencoded
-Cookie: userId=ac32:dfbe:8f1a:249c; sid=cfb48e3d98fcb1
-User-Agent: VRC
-
-POST /form
-var1=value of var1&
-var2=value of var2
+# Accept: */*
+# Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+# Cache-Control: no-cache
+# Connection: keep-alive
+# Content-Type: application/x-www-form-urlencoded
+# Cookie: userId=ac32:dfbe:8f1a:249c; sid=cfb48e3d98fcb1
+# User-Agent: VRC
+#
+# POST /form
+# var1=value of var1&
+# var2=value of var2

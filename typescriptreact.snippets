@@ -1,3 +1,58 @@
+global !p
+def caps(foo):
+	myStr = foo
+	return myStr.capitalize() if type(myStr) == str else foo
+endglobal
+
+snippet importReactFP "usual import state for FP in React" b
+import React, {
+  FC,
+  PropsWithChildren,
+  useState,
+} from "react";
+endsnippet
+
+snippet importClassnames "quickimport classnames package" b
+import classNames from "classnames";
+endsnippet
+
+snippet import_ "quickimport lodash package" b
+import lodash from "lodash";
+endsnippet
+
+snippet FComponent "FP ReactProps & ReactComponent skeleton"
+export interface IProps extends $1 {
+	$2
+}
+
+export default const Component: FC<PropsWithChildren<IProps>> = (props: PropsWithChildren<IProps>) => {
+	const [ ${3:my}State, set${3/\w*/\u$0/}State] = useState($4);
+	const { children, $5 } = props;
+	const classList = classNames(
+		$6
+	);
+
+  const handleOn$7 = (ev: React.SyntheticEvent<Element>): boolean => {
+		$8
+
+		return false;
+	}
+
+	return (
+		<$9
+			className={classList}
+			on$7={handleOn$7}
+		>
+			{children}
+		</$9>
+	);
+}
+endsnippet
+
+snippet useS "useState quicksnip"
+const [ ${1:my}State, set${1/\w+/\u$0/}State ] = useState($2);
+endsnippet
+
 snippet testSetupTeardown "usual setup teardown boilerplate" b
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
