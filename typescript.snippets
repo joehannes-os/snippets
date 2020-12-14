@@ -1,0 +1,51 @@
+extends ecmascript
+
+snippet in:P "interface IProps" b
+interface IProps {
+	$0
+}
+endsnippet
+
+snippet in:Pe "interface IProps extends $" b
+interface IProps extends $1 {
+	$0
+}
+endsnippet
+
+snippet in:S "interface IState" b
+interface IState {
+	$0
+}
+endsnippet
+
+snippet in:Se "interface IState extends $" b
+interface IState extends $1 {
+	$0
+}
+endsnippet
+
+snippet R:FC "React Functional Component" b
+const Component: FC<PropsWithChildren<IProps>> = (props: PropsWithChildren<IProps>) => {
+	const [ ${1:my}State, set${1/\w*/\u$0/}State ] = useState($2);
+	const { children } = props;
+	const classList = classNames(
+
+	);
+
+  const handleOn${3:Click} = (ev: React.SyntheticEvent<Element>): boolean => {
+		$0
+
+		return false;
+	}
+
+	return (
+		<${4:div}
+			className={classList}
+			on$3={handleOn$3}
+		>
+			{children}
+		</$4>
+	);
+}
+endsnippet
+
